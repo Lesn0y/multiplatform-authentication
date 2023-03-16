@@ -1,4 +1,4 @@
-package com.lesnoy.oidcservice.auth.custom;
+package com.lesnoy.oidcservice.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.function.Function;
 
 @Service
-public class NativeJwtService {
+public class JwtService {
 
     @Value("${authentication.native-secret}")
     private String secret;
