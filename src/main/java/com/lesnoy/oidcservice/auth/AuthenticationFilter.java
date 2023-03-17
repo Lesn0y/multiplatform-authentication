@@ -36,7 +36,6 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                 var userDetails = this.userService.loadUserByUsername(username);
 
                 if (jwtService.isTokenValid(jwt, userDetails)) {
-                    System.out.println("TOKEN VALID");
 
                     var authToken = new UsernamePasswordAuthenticationToken(
                             userDetails,

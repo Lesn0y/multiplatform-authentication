@@ -24,23 +24,23 @@ public class AuthService {
 
     public AuthResponse register(RegisterRequest request) {
         User user = User.builder()
-                .username(request.getUsername())
-                .password(encoder.encode(request.getPassword()))
-                .name(request.getName())
+                .username(request.username())
+                .password(encoder.encode(request.password()))
+                .name(request.name())
                 .role(Role.USER)
                 .build();
         service.save(user);
-        return new AuthResponse(request.getUsername(), jwtService.generateToken(user));
+        return new AuthResponse(request.username(), jwtService.generateToken(user));
     }
 
     public AuthResponse login(LoginRequest request) {
-        System.out.println(encoder.encode(request.getPassword()));
+
         manager.authenticate(new UsernamePasswordAuthenticationToken(
-                request.getUsername(),
-                request.getPassword()
+                request.username(),
+                request.password()
         ));
 
-        UserDetails user = service.loadUserByUsername(request.getUsername());
+        UserDetails user = service.loadUserByUsername(request.username());
 
         var token = jwtService.generateToken(user);
         return new AuthResponse(user.getUsername(), token);

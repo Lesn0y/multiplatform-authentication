@@ -19,7 +19,7 @@ public class AppConfiguration {
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
-        var authProvider= new DaoAuthenticationProvider();
+        var authProvider = new DaoAuthenticationProvider();
         authProvider.setPasswordEncoder(passwordEncoder());
         authProvider.setUserDetailsService(userService);
         return authProvider;
@@ -34,6 +34,4 @@ public class AppConfiguration {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 }
