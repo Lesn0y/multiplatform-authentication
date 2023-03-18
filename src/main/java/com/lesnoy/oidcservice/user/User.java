@@ -13,6 +13,7 @@ import java.util.Map;
 
 @Table(name = "users")
 @Entity
+@ToString
 @Getter
 @Builder
 @NoArgsConstructor
