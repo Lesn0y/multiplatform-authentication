@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerOAuthUserService extends DefaultOAuth2UserService {
+public class OAuthUserService extends DefaultOAuth2UserService {
 
     private final GoogleService googleService;
     private final UserService userService;
@@ -26,7 +26,6 @@ public class CustomerOAuthUserService extends DefaultOAuth2UserService {
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         Map<String, Object> parameters = userRequest.getAdditionalParameters();
-        System.out.println("OAuth2UserRequest - " + parameters);
         try {
             GoogleIdToken googleToken = googleService.convertToGoogleToken(String.valueOf(parameters.get("id_token")));
 

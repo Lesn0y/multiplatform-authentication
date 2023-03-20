@@ -1,0 +1,22 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lesnoydb
+    username: lesnoy
+    password: root
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 186306018922-kvkltrvop5bq6mp91g5a4amk2pcc27g9.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+              - email
+              - profile
+
+authentication:
+  native-secret: Nimytlt1SfLNa3Z0TQzMZyQkbSQoNfl2TvtCm2tpO9LBXxZ7NPKeHCCgO7EQleff53FRJFNOERNFon432jk432dewdwe322denjldbewkbd324dsa32ddadancxa
