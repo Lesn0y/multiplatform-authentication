@@ -1,5 +1,5 @@
 HELP.md
-target/
+backend/target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -18,6 +18,7 @@ target/
 *.iws
 *.iml
 *.ipr
+backend/src/main/resources/application.yml
 
 ### NetBeans ###
 /nbproject/private/
@@ -31,4 +32,3 @@ build/
 
 ### VS Code ###
 .vscode/
-backend/src/main/resources/application.yml
