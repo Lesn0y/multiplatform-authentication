@@ -30,8 +30,8 @@ public class OAuthUserService extends DefaultOAuth2UserService {
             GoogleIdToken googleToken = googleService.convertToGoogleToken(String.valueOf(parameters.get("id_token")));
 
             String username = googleService.extractEmail(googleToken);
-            Optional<User> user = userService.findUserByUsername(username);
-            if (user.isEmpty()) {
+            User user = userService.findUserByUsername(username);
+            if (user == null) {
                 String name = googleService.extractClaim(googleToken, JWTClaims.FIRST_NAME);
                 String picture = googleService.extractClaim(googleToken, JWTClaims.PICTURE);
                 return userService.save(User.builder()
@@ -41,7 +41,7 @@ public class OAuthUserService extends DefaultOAuth2UserService {
                         .role(Role.USER)
                         .build());
             }
-            return user.get();
+            return user;
         } catch (GeneralSecurityException | IOException e) {
             throw new RuntimeException(e);
         }

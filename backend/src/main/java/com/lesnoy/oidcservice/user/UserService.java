@@ -25,7 +25,9 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
-    public Optional<User> findUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User findUserByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() ->
+                        new UsernameNotFoundException("Username with login \"" + username + "\" not found"));
     }
 }

@@ -22,7 +22,7 @@ public class AuthService {
     private final AuthenticationManager manager;
     private final JwtService jwtService;
 
-    public AuthResponse register(RegisterRequest request) {
+    public AuthResponse registration(RegisterRequest request) {
         User user = User.builder()
                 .username(request.username())
                 .password(encoder.encode(request.password()))
@@ -30,10 +30,10 @@ public class AuthService {
                 .role(Role.USER)
                 .build();
         service.save(user);
-        return new AuthResponse(request.username(), jwtService.generateToken(user));
+        return new AuthResponse(jwtService.generateToken(user));
     }
 
-    public AuthResponse login(LoginRequest request) {
+    public AuthResponse authentication(LoginRequest request) {
 
         manager.authenticate(new UsernamePasswordAuthenticationToken(
                 request.username(),
@@ -43,7 +43,7 @@ public class AuthService {
         UserDetails user = service.loadUserByUsername(request.username());
 
         var token = jwtService.generateToken(user);
-        return new AuthResponse(user.getUsername(), token);
+        return new AuthResponse(token);
     }
 
 }

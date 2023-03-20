@@ -1,6 +1,8 @@
 package com.lesnoy.oidcservice.controller;
 
+import com.lesnoy.oidcservice.user.User;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 
     @GetMapping
-    public ResponseEntity<String> admin() {
-        return ResponseEntity.ok("Hello, admin");
+    public ResponseEntity<String> admin(@AuthenticationPrincipal User user) {
+        return ResponseEntity.ok("Welcome home, " + user.getName());
     }
 
 }
