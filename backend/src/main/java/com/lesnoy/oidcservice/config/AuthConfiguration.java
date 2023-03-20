@@ -34,6 +34,9 @@ public class AuthConfiguration {
                 .oauth2Login(login -> login
                         .defaultSuccessUrl("/api/v1/user")
                         .successHandler(successHandler)
+                        .authorizationEndpoint(authorization -> authorization
+                                .baseUri("/oauth2/google")
+                        )
                         .userInfoEndpoint()
                         .userService(oAuthUserService)
                 )
