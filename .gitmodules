@@ -1,0 +1,6 @@
+[submodule "multiplatform-authentication"]
+	path = multiplatform-authentication
+	url = git@github.com:HoL1DAYs/multiplatform-authentication.git
+[submodule "master"]
+	path = master
+	url = git@github.com:HoL1DAYs/multiplatform-authentication.git
