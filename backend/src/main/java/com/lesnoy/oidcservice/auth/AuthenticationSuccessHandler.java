@@ -3,12 +3,10 @@ package com.lesnoy.oidcservice.auth;
 import com.lesnoy.oidcservice.user.Role;
 import com.lesnoy.oidcservice.user.User;
 import com.lesnoy.oidcservice.user.UserService;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.stereotype.Component;
@@ -28,10 +26,10 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
-                                        Authentication authentication) throws IOException, ServletException {
-        User user = userService.findUserByUsername(authentication.getName()).get();
+                                        Authentication authentication) throws IOException {
+        User user = userService.findUserByUsername(authentication.getName());
         String token = jwtService.generateToken(user);
-        System.out.println("Authorization: Bearer " + token);
+
         response.addHeader("Authorization", "Bearer " + token);
 
         redirectStrategy.sendRedirect(request, response, determineTargetUrl(user));

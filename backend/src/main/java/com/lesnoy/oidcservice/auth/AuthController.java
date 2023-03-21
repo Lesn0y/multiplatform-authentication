@@ -20,11 +20,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
-        return ResponseEntity.ok(authService.login(request));
+        return ResponseEntity.ok(authService.authentication(request));
     }
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
-        return new ResponseEntity<>(authService.register(request), HttpStatus.CREATED);
+        return new ResponseEntity<>(authService.registration(request), HttpStatus.CREATED);
     }
 }
