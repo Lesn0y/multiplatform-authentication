@@ -6,7 +6,7 @@ export class AuthInterceptorService implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const token = JSON.parse(localStorage.getItem('token') || '{}');
-    const modifiedReq = req.clone({headers: req.headers.append('Authorization', token)})
+    const modifiedReq = req.clone({headers: req.headers.append('Authorization', String(token))})
     console.log('interceptor works!')
     return next.handle(modifiedReq).pipe(tap(event => {
       console.log(event)
