@@ -18,7 +18,7 @@ import {AuthInterceptorService} from "./sing-up-form/auth-interceptor.service";
     FormsModule,
     HttpClientModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
