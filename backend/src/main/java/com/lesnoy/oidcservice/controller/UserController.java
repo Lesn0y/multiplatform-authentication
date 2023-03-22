@@ -1,6 +1,7 @@
 package com.lesnoy.oidcservice.controller;
 
 import com.lesnoy.oidcservice.user.User;
+import com.lesnoy.oidcservice.user.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,7 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @GetMapping
-    public ResponseEntity<String> user(@AuthenticationPrincipal User user) {
-        return ResponseEntity.ok("Hello, " + user.getName());
+    public ResponseEntity<UserDTO> user(@AuthenticationPrincipal User user) {
+        return ResponseEntity.ok(new UserDTO(
+                user.getId(),
+                user.getUsername(),
+                user.getName(),
+                user.getImg()
+        ));
     }
 }
