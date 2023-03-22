@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import {RequestService} from "./request.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sing-up-form',
@@ -11,7 +12,7 @@ export class SingUpFormComponent {
 
   signupForm: FormGroup
   isLoginMode: boolean = false
-  constructor(private reqService: RequestService) {
+  constructor(private reqService: RequestService, private router: Router) {
   }
 
   ngOnInit(){
@@ -22,6 +23,7 @@ export class SingUpFormComponent {
         'password': new FormControl(null, Validators.required)
       }),
     })
+
   }
 
 
@@ -34,11 +36,14 @@ export class SingUpFormComponent {
       this.reqService.onSingIn(email, password).subscribe(res => {
         // @ts-ignore
         localStorage.setItem('token', res.token)
+        this.router.navigateByUrl('home-page')
+
       })
     } else {
       this.reqService.onSingUp(email, password, username).subscribe(res => {
         // @ts-ignore
         localStorage.setItem('token', res.token)
+        this.router.navigateByUrl('signUp-page')
       })
     }
   }
@@ -49,12 +54,8 @@ export class SingUpFormComponent {
       localStorage.setItem('token', res.token)
     })
   }
-
-
   SwitchMode(){
     this.isLoginMode = !this.isLoginMode;
   }
-
-
 }
 

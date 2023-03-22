@@ -6,17 +6,22 @@ import { SingUpFormComponent } from './sing-up-form/sing-up-form.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptorService} from "./sing-up-form/auth-interceptor.service";
+import {RouterModule} from "@angular/router";
+import { HomePageComponent } from './home-page/home-page.component';
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    SingUpFormComponent
+    SingUpFormComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
