@@ -31,7 +31,6 @@ public class AuthenticationSuccessHandler implements org.springframework.securit
         String token = jwtService.generateToken(user);
 
         response.addHeader("Authorization", "Bearer " + token);
-
         redirectStrategy.sendRedirect(request, response, determineTargetUrl(user));
     }
 
