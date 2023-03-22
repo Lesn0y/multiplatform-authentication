@@ -65,10 +65,10 @@ public class AuthConfiguration {
     public CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200/"));
-        config.setAllowedMethods(Arrays.asList("GET", "POST"));
-        config.setAllowedHeaders(List.of("Authorization"));
         config.setAllowCredentials(true);
+        config.setAllowedOriginPatterns(List.of("http://localhost:4200"));
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
         return source;
     }
