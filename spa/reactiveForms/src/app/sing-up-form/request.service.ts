@@ -16,7 +16,7 @@ export class RequestService{
 
   onSingIn( email: string, password: string, username?: string,){
     return this.httpReq.post('http://localhost:8080/auth/login', {
-      email: email,
+      username: email,
       password: password
     })
   }
@@ -28,6 +28,10 @@ export class RequestService{
 
   onVkSignIn(){
     return this.httpReq.get('http://localhost:8080/oauth2/authorization/vk')
+  }
+
+  getUsername(){
+    return this.httpReq.get('http://localhost:8080/api/v1/user')
   }
 
 }
